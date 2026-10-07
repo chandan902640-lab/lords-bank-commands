@@ -1,11 +1,5 @@
-# Operating System files
+__pycache__/
+*.pyc
+.env
 .DS_Store
 Thumbs.db
-
-# Code Editor settings
-.vscode/
-.idea/
-
-# Environment / Secret keys (aage chal kar use ho toh)
-.env
-*.log

@@ -33,53 +33,29 @@
     }
     
     /* =========================================
-       MAGICAL SNOW, TWINKLE, AND FIREWORKS CSS
+       NEON ROTATING SHAPES CSS (NEW BACKGROUND)
        ========================================= */
-    .meteor {
+    .neon-shape {
       position: absolute;
-      border-radius: 50%;
-      background-color: currentColor;
-      will-change: transform, opacity, margin-top;
+      will-change: transform, opacity;
+      /* Double Glowing Drop Shadow (Neon Blue & Cyan) */
+      filter: drop-shadow(0 0 10px currentColor) drop-shadow(0 0 30px currentColor);
+      animation: float-and-spin linear infinite;
+      z-index: -10;
     }
 
-    @keyframes fall-sway {
-      0% { transform: translate(0, -5vh); opacity: 0; }
-      10% { opacity: var(--opacity); }
-      25% { transform: translate(3vw, 25vh); }
-      50% { transform: translate(-2vw, 50vh); }
-      75% { transform: translate(3vw, 75vh); }
-      90% { opacity: var(--opacity); }
-      100% { transform: translate(-1vw, 105vh); opacity: 0; }
-    }
-
-    @keyframes fall-sway-rev {
-      0% { transform: translate(0, -5vh); opacity: 0; }
-      10% { opacity: var(--opacity); }
-      25% { transform: translate(-3vw, 25vh); }
-      50% { transform: translate(2vw, 50vh); }
-      75% { transform: translate(-3vw, 75vh); }
-      90% { opacity: var(--opacity); }
-      100% { transform: translate(1vw, 105vh); opacity: 0; }
-    }
-
-    @keyframes twinkle {
-      0%, 100% { filter: brightness(1) drop-shadow(0 0 2px currentColor); }
-      50% { filter: brightness(1.5) drop-shadow(0 0 10px currentColor); transform: scale(1.2); }
-    }
-
-    .splash-spark {
-      position: absolute;
-      bottom: 0;
-      border-radius: 50%;
-      background-color: currentColor;
-      pointer-events: none;
-      animation: splashAnim 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-      filter: drop-shadow(0 0 5px currentColor);
-    }
-
-    @keyframes splashAnim {
-      0% { transform: translate(0, 0) scale(1.5); opacity: 1; }
-      100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    /* Upar ki taraf tairna aur gol ghumna */
+    @keyframes float-and-spin {
+      0% { 
+        transform: translateY(110vh) rotate(0deg) scale(var(--scale)); 
+        opacity: 0;
+      }
+      10% { opacity: var(--max-opacity); }
+      90% { opacity: var(--max-opacity); }
+      100% { 
+        transform: translateY(-20vh) rotate(var(--rotation)) scale(var(--scale)); 
+        opacity: 0;
+      }
     }
 
     /* --- Gol Chatakdar Blinker (Round Dot) CSS --- */
@@ -173,19 +149,19 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800 min-h-screen font-sans relative">
+<body class="bg-gradient-to-br from-slate-50 to-slate-200 text-slate-800 min-h-screen font-sans relative overflow-x-hidden">
 
-  <!-- Animated Background Container -->
-  <div id="meteor-container" class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none"></div>
+  <!-- Animated Background Container for Shapes -->
+  <div id="shape-container" class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none"></div>
 
   <!-- Header (Glassy) -->
   <header class="border-b border-white/60 bg-white/60 sticky top-0 backdrop-blur-lg z-50 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center gap-3">
         
-        <!-- SMART LOGO: Agar robot.png nahi mila toh ye apne aap glowing Robot icon dikhayega -->
+        <!-- SMART LOGO (Static Folder) -->
         <div class="flex items-center justify-center mr-1">
-          <img src="/static/favicon.png" alt="Bot Logo" class="w-10 h-10 drop-shadow-[0_0_10px_rgba(99,102,241,0.6)] object-contain" onerror="this.outerHTML='<i class=\'fa-solid fa-robot text-3xl text-indigo-500 drop-shadow-[0_0_12px_rgba(99,102,241,0.8)]\'></i>'">'">
+          <img src="/static/favicon.png" alt="Bot Logo" class="w-10 h-10 drop-shadow-[0_0_10px_rgba(99,102,241,0.6)] object-contain" onerror="this.outerHTML='<i class=\'fa-solid fa-robot text-3xl text-indigo-500 drop-shadow-[0_0_12px_rgba(99,102,241,0.8)]\'></i>'">
         </div>
 
         <h1 class="text-xl font-bold tracking-wide text-slate-900">Ultimate Bank <span class="text-amber-500">Commands</span></h1>
@@ -754,84 +730,50 @@
       setActiveButton(window.location.hash);
     }
 
-    /* --- MAGICAL SNOW, TWINKLE, PARALLAX & FIREWORKS JS --- */
-    function createMeteors() {
-      const colors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#ff00a0'];
-      const container = document.getElementById('meteor-container');
-      const density = window.innerWidth < 600 ? 25 : 45; 
+    /* --- ROTATING NEON GLOW SHAPES JS (NEW) --- */
+    function createFloatingShapes() {
+      const container = document.getElementById('shape-container');
+      container.innerHTML = ''; // Pehle ka sab saaf
+      
+      // Neon shapes ke icons (Plus, Star, Play, Circle)
+      const icons = ['fa-plus', 'fa-star', 'fa-play', 'fa-circle-notch'];
+      
+      // Glowing Colors (Blue, Cyan)
+      const colors = ['#3b82f6', '#06b6d4']; 
+      
+      // Screen ke size ke hisaab se shapes ki ginti
+      const count = window.innerWidth < 600 ? 15 : 25; 
 
-      for (let i = 0; i < density; i++) {
-        const meteor = document.createElement('div');
-        meteor.className = 'meteor';
+      for (let i = 0; i < count; i++) {
+        const shape = document.createElement('i');
+        const iconClass = icons[Math.floor(Math.random() * icons.length)];
+        shape.className = `fa-solid ${iconClass} neon-shape`;
         
-        // 3D Parallax Logic
-        const depth = Math.random(); 
-        const size = (depth * 4 + 2) + 'px'; 
-        const opacity = depth * 0.6 + 0.3; 
-        const animDuration = (1 - depth) * 6 + 4; 
-        const animDelay = Math.random() * 5; 
+        // Random size, position, aur speed
+        const size = Math.random() * 1.2 + 0.6; // Scale
+        const left = Math.random() * 100; // Position X
+        const duration = Math.random() * 20 + 15; // Animation time (15s - 35s)
+        const delay = Math.random() * -30; // Turant shuru hone ke liye
         
-        const leftPos = Math.random() * 100;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        
-        meteor.style.left = leftPos + 'vw';
-        meteor.style.color = color;
-        meteor.style.width = size;
-        meteor.style.height = size;
-        
-        meteor.style.setProperty('--opacity', opacity);
-        meteor.style.setProperty('--depth', depth + 0.1); 
-        
-        // Sway aur Twinkle Animation Setup
-        const swayAnim = i % 2 === 0 ? 'fall-sway' : 'fall-sway-rev';
-        const twinkleDur = Math.random() * 2 + 1.5; 
-        
-        meteor.style.animation = `${swayAnim} ${animDuration}s linear ${animDelay}s infinite, twinkle ${twinkleDur}s ease-in-out infinite`;
-        
-        container.appendChild(meteor);
+        // Ulta ya seedha 360 degree ghumna
+        const rotation = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 360 + 360); 
 
-        // Firework Splash Trigger
-        meteor.addEventListener('animationiteration', (e) => {
-          if (e.animationName.includes('fall-sway')) {
-            createSplash(leftPos + 'vw', color, size, container);
-          }
-        });
+        shape.style.left = left + 'vw';
+        shape.style.color = colors[Math.floor(Math.random() * colors.length)];
+        
+        // CSS Variables set karna
+        shape.style.setProperty('--scale', size);
+        shape.style.setProperty('--rotation', rotation + 'deg');
+        shape.style.setProperty('--max-opacity', (Math.random() * 0.4 + 0.2));
+        
+        shape.style.animationDuration = duration + 's';
+        shape.style.animationDelay = delay + 's';
+        
+        container.appendChild(shape);
       }
     }
-    
-    // 3D Parallax Scroll Event Handler
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      document.querySelectorAll('.meteor').forEach(m => {
-        const depth = parseFloat(m.style.getPropertyValue('--depth'));
-        m.style.marginTop = (scrollY * depth * -0.4) + 'px';
-      });
-    });
 
-    // Phootne (Sparks Splash) ka function
-    function createSplash(left, color, size, container) {
-       const sparkCount = Math.floor(Math.random() * 3) + 3; 
-       for(let i = 0; i < sparkCount; i++) {
-         let spark = document.createElement('div');
-         spark.className = 'splash-spark';
-         spark.style.left = left;
-         spark.style.color = color;
-         spark.style.width = size;
-         spark.style.height = size;
-         
-         let tx = (Math.random() - 0.5) * 80 + 'px'; 
-         let ty = (Math.random() * -60 - 20) + 'px'; 
-         
-         spark.style.setProperty('--tx', tx);
-         spark.style.setProperty('--ty', ty);
-         
-         container.appendChild(spark);
-         
-         setTimeout(() => spark.remove(), 600);
-       }
-    }
-
-    window.onload = createMeteors;
+    window.onload = createFloatingShapes;
   </script>
 </body>
 </html>

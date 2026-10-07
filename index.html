@@ -30,7 +30,7 @@
 
     /* --- Gol Chatakdar Blinker (Round Dot) CSS --- */
     .status-dot {
-      position: relative; /* Bas ye ek nayi line add karni hai */
+      position: relative; 
       display: inline-block;
       width: 12px;
       height: 12px;
@@ -39,6 +39,7 @@
       animation: dotMultiColor 3s infinite alternate;
       box-shadow: 0 0 8px currentColor;
     }
+    
     /* --- Radar / Tarang Effect --- */
     .status-dot::after {
       content: '';
@@ -53,16 +54,11 @@
     }
 
     @keyframes tarangEffect {
-      0% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-      100% {
-        transform: scale(3.5);
-        opacity: 0;
-      }
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(3.5); opacity: 0; }
     }
-    /* Lal, Nila, Aasmani, Pila, Hara, Narangi Blink */
+
+    /* Lal, Chatak Gulabi, Pila, Hara, Narangi Blink */
     @keyframes dotMultiColor {
       0%   { background-color: #ef4444; box-shadow: 0 0 15px #ef4444, 0 0 30px #ef4444; } /* Lal */
       25%  { background-color: #ff00a0; box-shadow: 0 0 15px #ff00a0, 0 0 30px #ff00a0; } /* Chatak Gulabi */
@@ -85,6 +81,52 @@
     @keyframes dotGreenBlink {
       0%   { background-color: #065f46; box-shadow: 0 0 4px #065f46; }
       100% { background-color: #10b981; box-shadow: 0 0 15px #10b981, 0 0 5px #ffffff inset; }
+    }
+
+    /* =========================================
+       5 NEW GAMING EFFECTS FOR BUTTONS
+       ========================================= */
+       
+    /* 1. Shimmer Effect (Tips Button) */
+    .shimmer-btn { position: relative; overflow: hidden; }
+    .shimmer-btn::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+      animation: shimmer 2.5s infinite; z-index: 1; pointer-events: none;
+    }
+    @keyframes shimmer { 100% { left: 200%; } }
+
+    /* 2. Neon Border (General Button) */
+    .neon-btn { animation: neon-border 1.5s linear infinite alternate; }
+    @keyframes neon-border {
+      0% { box-shadow: 0 0 2px #0ea5e9; border-color: #0ea5e9; }
+      100% { box-shadow: 0 0 8px #8b5cf6; border-color: #8b5cf6; }
+    }
+
+    /* 3. Floating Effect (Search Button) */
+    .float-btn { animation: float 3s ease-in-out infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* 4. Heartbeat Effect (Balance Button) */
+    .heartbeat-btn { animation: heartbeat 2s infinite; }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.05); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.05); }
+    }
+
+    /* 5. Glitch Effect On Hover (Resource Button) */
+    .glitch-btn:hover { animation: glitch-anim 0.3s infinite; }
+    @keyframes glitch-anim {
+      0% { transform: translate(1px, 1px); }
+      25% { transform: translate(-1px, -1px); text-shadow: 1px 0 red, -1px 0 blue; }
+      50% { transform: translate(1px, -1px); text-shadow: -1px 0 red, 1px 0 blue; }
+      75% { transform: translate(-1px, 1px); text-shadow: 1px 0 red, -1px 0 blue; }
+      100% { transform: translate(1px, 1px); }
     }
   </style>
 </head>
@@ -118,11 +160,16 @@
     <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-5 shadow-xl backdrop-blur-sm">
       <h3 class="text-xs uppercase font-semibold text-slate-400 tracking-wider mb-3">Table of contents</h3>
       <div class="flex flex-wrap gap-3">
-        <a href="#tips" class="toc-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Tips</a>
-        <a href="#general" class="toc-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>General</a>
-        <a href="#search" class="toc-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Search</a>
-        <a href="#balance" class="toc-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Balance</a>
-        <a href="#resource" class="toc-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Resource</a>
+        <!-- Effect 1: Shimmer -->
+        <a href="#tips" class="toc-btn shimmer-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Tips</a>
+        <!-- Effect 2: Neon -->
+        <a href="#general" class="toc-btn neon-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>General</a>
+        <!-- Effect 3: Floating -->
+        <a href="#search" class="toc-btn float-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Search</a>
+        <!-- Effect 4: Heartbeat -->
+        <a href="#balance" class="toc-btn heartbeat-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Balance</a>
+        <!-- Effect 5: Glitch -->
+        <a href="#resource" class="toc-btn glitch-btn flex items-center px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm font-medium hover:text-white transition duration-200 shadow-sm"><span class="status-dot"></span>Resource</a>
       </div>
     </div>
 

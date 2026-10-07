@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guild Bank Commands | Documentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-950/80 sticky top-0 backdrop-blur z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-shield-halved text-amber-400 text-2xl"></i>
+        <h1 class="text-xl font-bold tracking-wide">Guild Bank <span class="text-amber-400">Commands</span></h1>
+      </div>
+      <!-- Search Bar -->
+      <div class="relative w-full sm:w-72">
+        <input type="text" id="searchInput" placeholder="Search commands..." 
+          class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 pl-9 text-sm focus:outline-none focus:border-amber-400 text-white placeholder-slate-400">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-10">
+
+    <!-- Tips Banner -->
+    <div class="bg-slate-800/60 border border-amber-500/30 rounded-xl p-5 shadow-lg">
+      <h2 class="text-amber-400 font-semibold mb-2 flex items-center gap-2">
+        <i class="fa-solid fa-circle-info"></i> Important Tips
+      </h2>
+      <ul class="text-slate-300 text-sm list-disc pl-5 space-y-1">
+        <li>If a player's name has spaces, use quotes or underscore (e.g. <code>!setacc "Player 1"</code> or <code>!setacc Player_1</code>).</li>
+        <li>Authorized users and R4+ have administrator balance privileges by default.</li>
+        <li>The bank bot will not reply during long tasks like hero stages.</li>
+      </ul>
+    </div>
+
+    <!-- 1. General Commands -->
+    <section>
+      <h2 class="text-2xl font-bold text-slate-100 mb-4 pb-2 border-b border-slate-800">
+        <i class="fa-solid fa-terminal text-amber-400 mr-2"></i> General Commands
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-sm command-table">
+          <thead class="bg-slate-800 text-slate-300 font-semibold uppercase text-xs">
+            <tr>
+              <th class="p-3">Command</th>
+              <th class="p-3">Function</th>
+              <th class="p-3">Example</th>
+              <th class="p-3">Result</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!payransom</td>
+              <td class="p-3 text-slate-300">Pays any outstanding Ransom for account's leader</td>
+              <td class="p-3 font-mono text-slate-400">!payransom</td>
+              <td class="p-3 text-slate-400">Leader ransom is paid</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!clearboard</td>
+              <td class="p-3 text-slate-300">Clears all quests from Guild Fest board</td>
+              <td class="p-3 font-mono text-slate-400">!clearboard</td>
+              <td class="p-3 text-slate-400">Quests deleted</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!shield [deploy]</td>
+              <td class="p-3 text-slate-300">Checks shield time or deploys a shield</td>
+              <td class="p-3 font-mono text-slate-400">!shield deploy</td>
+              <td class="p-3 text-slate-400">Shield is activated</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!relocate [X] [Y]</td>
+              <td class="p-3 text-slate-300">Relocates the bank to target coordinates</td>
+              <td class="p-3 font-mono text-slate-400">!relocate 243 209</td>
+              <td class="p-3 text-slate-400">Bank relocates to coords</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!hunt [x] [y]</td>
+              <td class="p-3 text-slate-300">Hunts the specified monster on map</td>
+              <td class="p-3 font-mono text-slate-400">!hunt 150 166</td>
+              <td class="p-3 text-slate-400">Hunts target monster</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!purge</td>
+              <td class="p-3 text-slate-300">Clears the Guild Chat</td>
+              <td class="p-3 font-mono text-slate-400">!purge</td>
+              <td class="p-3 text-slate-400">Chat is cleared</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2. Search Commands -->
+    <section>
+      <h2 class="text-2xl font-bold text-slate-100 mb-4 pb-2 border-b border-slate-800">
+        <i class="fa-solid fa-location-crosshairs text-amber-400 mr-2"></i> Search Commands
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-sm command-table">
+          <thead class="bg-slate-800 text-slate-300 font-semibold uppercase text-xs">
+            <tr>
+              <th class="p-3">Command</th>
+              <th class="p-3">Function</th>
+              <th class="p-3">Example</th>
+              <th class="p-3">Result</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!findtile [type] [lvl]</td>
+              <td class="p-3 text-slate-300">Finds resource tiles around the bank</td>
+              <td class="p-3 font-mono text-slate-400">!findtile food 4</td>
+              <td class="p-3 text-slate-400">Sends tile coordinates via mail</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!findmonster [name] [lvl]</td>
+              <td class="p-3 text-slate-300">Finds specific monster around castle bank</td>
+              <td class="p-3 font-mono text-slate-400">!findmonster hardrox 2</td>
+              <td class="p-3 text-slate-400">Reports monster position via mail</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!findnest [level]</td>
+              <td class="p-3 text-slate-300">Finds darknest around the bank</td>
+              <td class="p-3 font-mono text-slate-400">!findnest 3</td>
+              <td class="p-3 text-slate-400">Sends darknest coords via mail</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Balance & Resource Commands -->
+    <section>
+      <h2 class="text-2xl font-bold text-slate-100 mb-4 pb-2 border-b border-slate-800">
+        <i class="fa-solid fa-coins text-amber-400 mr-2"></i> Balance & Resources
+      </h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-sm command-table">
+          <thead class="bg-slate-800 text-slate-300 font-semibold uppercase text-xs">
+            <tr>
+              <th class="p-3">Command</th>
+              <th class="p-3">Function</th>
+              <th class="p-3">Example</th>
+              <th class="p-3">Result</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!bal</td>
+              <td class="p-3 text-slate-300">Checks your sent RSS balance in bank</td>
+              <td class="p-3 font-mono text-slate-400">!bal</td>
+              <td class="p-3 text-slate-400">Sends your current RSS balance</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">![type] [amount]</td>
+              <td class="p-3 text-slate-300">Sends specific resource (food, stone, etc.)</td>
+              <td class="p-3 font-mono text-slate-400">!food 5M</td>
+              <td class="p-3 text-slate-400">Bank sends 5M Food</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!rss [F] [S] [W] [O] [G]</td>
+              <td class="p-3 text-slate-300">Sends all types of RSS at once</td>
+              <td class="p-3 font-mono text-slate-400">!rss 5M 5M 5M 5M 0</td>
+              <td class="p-3 text-slate-400">Bank sends 5M of each selected RSS</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-mono text-amber-400 font-semibold">!setacc [player]</td>
+              <td class="p-3 text-slate-300">Sets balance credited to another account</td>
+              <td class="p-3 font-mono text-slate-400">!setacc Shark</td>
+              <td class="p-3 text-slate-400">Transfers credit receiver</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with Disclaimer -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-16 text-center text-xs text-slate-400 space-y-2">
+    <p>Guild Bank Documentation &bull; Community Knowledge Base</p>
+    <p class="text-slate-400">Disclaimer: This is an unofficial fan guide. All game names, marks, and assets belong to their respective owners.</p>
+  </footer>
+
+  <!-- Search Script -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function(e) {
+      const term = e.target.value.toLowerCase();
+      const rows = document.querySelectorAll('.command-table tbody tr');
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(term) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

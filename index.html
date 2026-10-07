@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guild Bank Commands</title>
+  <title>Ultimate Bank Commands</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -22,7 +22,6 @@
       border-radius: 50%;
       background-color: currentColor;
       will-change: transform, opacity, margin-top;
-      /* Box shadow added via CSS animation twinkle */
     }
 
     /* Z-Shape Swaying Animations */
@@ -75,7 +74,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      margin-left: 10px;
+      margin-left: 10px; /* Text ke baad gap */
       animation: dotMultiColor 3s infinite alternate;
     }
     
@@ -93,6 +92,7 @@
       100% { transform: scale(3.5); opacity: 0; }
     }
 
+    /* Lal, Chatak Gulabi, Pila, Narangi Blink (Green hataya gaya) */
     @keyframes dotMultiColor {
       0%   { background-color: #ff1a1a; box-shadow: 0 0 15px #ff1a1a, 0 0 30px #ff1a1a; } 
       33%  { background-color: #ff00a0; box-shadow: 0 0 15px #ff00a0, 0 0 30px #ff00a0; } 
@@ -100,7 +100,7 @@
       100% { background-color: #ff6600; box-shadow: 0 0 15px #ff6600, 0 0 30px #ff6600; } 
     }
 
-    /* --- Active Green Blinker --- */
+    /* --- Active Green Blinker (Jo select hoga sirf wahi Green hoga) --- */
     .active-btn {
       background-color: rgba(16, 185, 129, 0.15) !important;
       border-color: #10b981 !important;
@@ -118,7 +118,7 @@
     }
 
     /* =========================================
-       5 GAMING EFFECTS FOR BUTTONS
+       5 GAMING EFFECTS FOR BUTTONS (Adjusted for Light Theme)
        ========================================= */
        
     .shimmer-btn { position: relative; overflow: hidden; }
@@ -171,7 +171,8 @@
         <div class="p-2 bg-amber-400/20 border border-amber-400/40 rounded-xl">
           <i class="fa-solid fa-shield-halved text-amber-500 text-xl"></i>
         </div>
-        <h1 class="text-xl font-bold tracking-wide text-slate-900">Guild Bank <span class="text-amber-500">Commands</span></h1>
+        <!-- UNIQUE NAME CHANGED HERE -->
+        <h1 class="text-xl font-bold tracking-wide text-slate-900">Ultimate Bank <span class="text-amber-500">Commands</span></h1>
       </div>
       <!-- Search Input -->
       <div class="relative w-full sm:w-80">
@@ -690,7 +691,8 @@
       <a href="#balance" class="hover:text-slate-800 font-medium">Balance</a>
       <a href="#resource" class="hover:text-slate-800 font-medium">Resource</a>
     </div>
-    <p>Guild Bank Documentation &bull; Community Knowledge Base</p>
+    <!-- NAME UPDATED IN FOOTER AS WELL -->
+    <p>Ultimate Bank Documentation &bull; Community Knowledge Base</p>
     <p class="text-slate-400 max-w-xl mx-auto">Disclaimer: This is an unofficial documentation tool. All game assets, bot titles, and trademarks belong to their respective owners.</p>
   </footer>
 
@@ -737,7 +739,7 @@
       setActiveButton(window.location.hash);
     }
 
-    /* --- MAGICAL SNOW & FIREWORKS JS --- */
+    /* --- MAGICAL SNOW, TWINKLE, PARALLAX & FIREWORKS JS --- */
     function createMeteors() {
       const colors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#ff00a0'];
       const container = document.getElementById('meteor-container');
@@ -747,11 +749,11 @@
         const meteor = document.createElement('div');
         meteor.className = 'meteor';
         
-        // 3D Parallax Logic (Bada taara fast gidega, chhota slow)
-        const depth = Math.random(); // 0 se 1 ke beech depth
+        // 3D Parallax Logic
+        const depth = Math.random(); 
         const size = (depth * 4 + 2) + 'px'; 
         const opacity = depth * 0.6 + 0.3; 
-        const animDuration = (1 - depth) * 6 + 4; // 4s se 10s ka time
+        const animDuration = (1 - depth) * 6 + 4; 
         const animDelay = Math.random() * 5; 
         
         const leftPos = Math.random() * 100;
@@ -765,7 +767,7 @@
         meteor.style.setProperty('--opacity', opacity);
         meteor.style.setProperty('--depth', depth + 0.1); 
         
-        // Sway aur Twinkle (Har taara alag speed me chamkega aur lehraega)
+        // Sway aur Twinkle Animation Setup
         const swayAnim = i % 2 === 0 ? 'fall-sway' : 'fall-sway-rev';
         const twinkleDur = Math.random() * 2 + 1.5; 
         
@@ -773,7 +775,7 @@
         
         container.appendChild(meteor);
 
-        // Firework Splash Trigger (Niche girte hi phootna)
+        // Firework Splash Trigger
         meteor.addEventListener('animationiteration', (e) => {
           if (e.animationName.includes('fall-sway')) {
             createSplash(leftPos + 'vw', color, size, container);
@@ -782,7 +784,7 @@
       }
     }
     
-    // 3D Parallax Scroll Effect (Mobile pe smooth scroll depth)
+    // 3D Parallax Scroll Event Handler
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       document.querySelectorAll('.meteor').forEach(m => {
@@ -791,9 +793,9 @@
       });
     });
 
-    // Phootne ka function (Sparks)
+    // Phootne (Sparks Splash) ka function
     function createSplash(left, color, size, container) {
-       const sparkCount = Math.floor(Math.random() * 3) + 3; // 3 se 5 tukde
+       const sparkCount = Math.floor(Math.random() * 3) + 3; 
        for(let i = 0; i < sparkCount; i++) {
          let spark = document.createElement('div');
          spark.className = 'splash-spark';
@@ -802,7 +804,6 @@
          spark.style.width = size;
          spark.style.height = size;
          
-         // Random disha me phootna
          let tx = (Math.random() - 0.5) * 80 + 'px'; 
          let ty = (Math.random() * -60 - 20) + 'px'; 
          
@@ -811,7 +812,6 @@
          
          container.appendChild(spark);
          
-         // 0.6 second baad kachra saaf
          setTimeout(() => spark.remove(), 600);
        }
     }

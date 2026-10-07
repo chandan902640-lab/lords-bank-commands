@@ -30,6 +30,7 @@
 
     /* --- Gol Chatakdar Blinker (Round Dot) CSS --- */
     .status-dot {
+      position: relative; /* Bas ye ek nayi line add karni hai */
       display: inline-block;
       width: 12px;
       height: 12px;
@@ -38,7 +39,29 @@
       animation: dotMultiColor 3s infinite alternate;
       box-shadow: 0 0 8px currentColor;
     }
+    /* --- Radar / Tarang Effect --- */
+    .status-dot::after {
+      content: '';
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      border-radius: 50%;
+      background-color: inherit;
+      animation: tarangEffect 1.5s infinite ease-out;
+    }
 
+    @keyframes tarangEffect {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(3.5);
+        opacity: 0;
+      }
+    }
     /* Lal, Nila, Aasmani, Pila, Hara, Narangi Blink */
     @keyframes dotMultiColor {
      0%   { background-color: #ef4444; box-shadow: 0 0 15px #ef4444, 0 0 30px #ef4444; }

@@ -3,10 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ultimate Bank Commands</title>
   
-  <!-- Yahan aapka Web Icon (Favicon) add kiya gaya hai -->
-  <link rel="icon" type="image/png" href="robot.png">
+  <!-- ========================================== -->
+  <!-- 🔥 SEO TAGS FOR GOOGLE SEARCH RANKING 🔥 -->
+  <!-- ========================================== -->
+  <title>Ultimate Bank Commands</title>
+  <meta name="description" content="Ultimate Bank Commands - Your complete guide and cheat sheet for guild bank bot commands, resource management, and tracking.">
+  <meta name="keywords" content="Guild bank commands, Lords bot commands, bank bot cheat sheet, ultimate bank commands, guild fest bot, resource tracking bot, gaming bank bot, rss bank bot">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Ultimate Bank">
+  
+  <!-- Social Media & Link Sharing Tags -->
+  <meta property="og:title" content="Ultimate Bank Commands">
+  <meta property="og:description" content="Complete guide for guild bank bot commands and resource management.">
+  <meta property="og:image" content="./robot.png">
+  <meta property="og:type" content="website">
+
+  <!-- Web Icon (Favicon) -->
+  <link rel="icon" type="image/png" href="./robot.png">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,7 +42,6 @@
       will-change: transform, opacity, margin-top;
     }
 
-    /* Z-Shape Swaying Animations */
     @keyframes fall-sway {
       0% { transform: translate(0, -5vh); opacity: 0; }
       10% { opacity: var(--opacity); }
@@ -49,13 +62,11 @@
       100% { transform: translate(1vw, 105vh); opacity: 0; }
     }
 
-    /* Twinkle Effect */
     @keyframes twinkle {
       0%, 100% { filter: brightness(1) drop-shadow(0 0 2px currentColor); }
       50% { filter: brightness(1.5) drop-shadow(0 0 10px currentColor); transform: scale(1.2); }
     }
 
-    /* Firework Splash Sparks */
     .splash-spark {
       position: absolute;
       bottom: 0;
@@ -78,7 +89,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      margin-left: 10px; /* Text ke baad gap */
+      margin-left: 10px; 
       animation: dotMultiColor 3s infinite alternate;
     }
     
@@ -96,7 +107,6 @@
       100% { transform: scale(3.5); opacity: 0; }
     }
 
-    /* Lal, Chatak Gulabi, Pila, Narangi Blink (Green hataya gaya) */
     @keyframes dotMultiColor {
       0%   { background-color: #ff1a1a; box-shadow: 0 0 15px #ff1a1a, 0 0 30px #ff1a1a; } 
       33%  { background-color: #ff00a0; box-shadow: 0 0 15px #ff00a0, 0 0 30px #ff00a0; } 
@@ -104,7 +114,7 @@
       100% { background-color: #ff6600; box-shadow: 0 0 15px #ff6600, 0 0 30px #ff6600; } 
     }
 
-    /* --- Active Green Blinker (Jo select hoga sirf wahi Green hoga) --- */
+    /* --- Active Green Blinker --- */
     .active-btn {
       background-color: rgba(16, 185, 129, 0.15) !important;
       border-color: #10b981 !important;
@@ -122,7 +132,7 @@
     }
 
     /* =========================================
-       5 GAMING EFFECTS FOR BUTTONS (Adjusted for Light Theme)
+       5 GAMING EFFECTS FOR BUTTONS
        ========================================= */
        
     .shimmer-btn { position: relative; overflow: hidden; }
@@ -173,9 +183,9 @@
     <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center gap-3">
         
-        <!-- YAHAN AAPKA NAYA ROBOT.PNG ADD HUA HAI (WITH GLOW) -->
+        <!-- SMART LOGO: Agar robot.png nahi mila toh ye apne aap glowing Robot icon dikhayega -->
         <div class="flex items-center justify-center mr-1">
-          <img src="robot.png" alt="Bot Logo" class="w-10 h-10 drop-shadow-[0_0_10px_rgba(99,102,241,0.6)] object-contain">
+          <img src="./robot.png" alt="Bot Logo" class="w-10 h-10 drop-shadow-[0_0_10px_rgba(99,102,241,0.6)] object-contain" onerror="this.outerHTML='<i class=\'fa-solid fa-robot text-3xl text-indigo-500 drop-shadow-[0_0_12px_rgba(99,102,241,0.8)]\'></i>'">
         </div>
 
         <h1 class="text-xl font-bold tracking-wide text-slate-900">Ultimate Bank <span class="text-amber-500">Commands</span></h1>

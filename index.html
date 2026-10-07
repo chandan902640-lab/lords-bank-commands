@@ -27,6 +27,30 @@
       0% { transform: translateY(-20vh); opacity: 1; }
       100% { transform: translateY(110vh); opacity: 0; }
     }
+
+    /* --- Multi-color Blinker for Normal Buttons --- */
+    .toc-btn {
+      transition: all 0.3s ease;
+      animation: multiColorBlink 4s infinite alternate;
+    }
+    @keyframes multiColorBlink {
+      0%   { box-shadow: 0 0 6px #ef4444; border-color: #ef4444; } /* Red */
+      25%  { box-shadow: 0 0 6px #3b82f6; border-color: #3b82f6; } /* Blue */
+      50%  { box-shadow: 0 0 6px #8b5cf6; border-color: #8b5cf6; } /* Purple */
+      75%  { box-shadow: 0 0 6px #eab308; border-color: #eab308; } /* Yellow */
+      100% { box-shadow: 0 0 6px #06b6d4; border-color: #06b6d4; } /* Cyan */
+    }
+
+    /* --- Green Blinker for Selected Button --- */
+    .toc-btn.active-btn {
+      animation: greenBlink 1s infinite alternate !important;
+      background-color: rgba(16, 185, 129, 0.15) !important;
+      color: #34d399 !important;
+    }
+    @keyframes greenBlink {
+      0%   { box-shadow: 0 0 8px #10b981; border-color: #10b981; }
+      100% { box-shadow: 0 0 20px #34d399, inset 0 0 8px #34d399; border-color: #34d399; }
+    }
   </style>
 </head>
 <body class="bg-[#0b0f19] text-slate-200 min-h-screen font-sans relative">
@@ -58,12 +82,13 @@
     <!-- Table of Contents -->
     <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-5 shadow-xl backdrop-blur-sm">
       <h3 class="text-xs uppercase font-semibold text-slate-400 tracking-wider mb-3">Table of contents</h3>
-      <div class="flex flex-wrap gap-2.5">
-        <a href="#tips" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Tips</a>
-        <a href="#general" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">General</a>
-        <a href="#search" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Search</a>
-        <a href="#balance" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Balance</a>
-        <a href="#resource" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Resource</a>
+      <div class="flex flex-wrap gap-3">
+        <!-- class me toc-btn add kiya hai -->
+        <a href="#tips" class="toc-btn px-4 py-2 rounded-lg bg-slate-800 border text-sm font-medium hover:text-white transition duration-200 shadow-sm">Tips</a>
+        <a href="#general" class="toc-btn px-4 py-2 rounded-lg bg-slate-800 border text-sm font-medium hover:text-white transition duration-200 shadow-sm">General</a>
+        <a href="#search" class="toc-btn px-4 py-2 rounded-lg bg-slate-800 border text-sm font-medium hover:text-white transition duration-200 shadow-sm">Search</a>
+        <a href="#balance" class="toc-btn px-4 py-2 rounded-lg bg-slate-800 border text-sm font-medium hover:text-white transition duration-200 shadow-sm">Balance</a>
+        <a href="#resource" class="toc-btn px-4 py-2 rounded-lg bg-slate-800 border text-sm font-medium hover:text-white transition duration-200 shadow-sm">Resource</a>
       </div>
     </div>
 
@@ -566,7 +591,7 @@
 
   <!-- Scripts -->
   <script>
-    // Search Filter Logic
+    // 1. Search Filter Logic
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', function(e) {
       const term = e.target.value.toLowerCase();
@@ -577,26 +602,34 @@
       });
     });
 
-    // Falling Colored Lines Generator (Background Effect)
+    // 2. Blinker Logic (Jab button click hoga toh sirf Green blink karega)
+    const tocButtons = document.querySelectorAll('.toc-btn');
+    tocButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Pehle sabhi buttons se green blinker hatao
+        tocButtons.forEach(b => b.classList.remove('active-btn'));
+        // Jo click hua hai usme active green blinker lagao
+        this.classList.add('active-btn');
+      });
+    });
+
+    // 3. Falling Colored Lines Generator (Background Effect)
     function createMeteors() {
       const colors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4']; // Blue, Green, Yellow, Purple, Cyan
       const container = document.getElementById('meteor-container');
       
-      // Screen width ke hisaab se density set karna
       const density = window.innerWidth < 600 ? 15 : 40; 
 
       for (let i = 0; i < density; i++) {
         const meteor = document.createElement('div');
         meteor.className = 'meteor';
         
-        // Random properties
         const leftPos = Math.random() * 100;
         const color = colors[Math.floor(Math.random() * colors.length)];
-        const animDuration = (Math.random() * 3 + 2); // 2s to 5s
-        const animDelay = (Math.random() * 5); // 0s to 5s delay
-        const height = (Math.random() * 50 + 50); // 50px to 100px height
+        const animDuration = (Math.random() * 3 + 2); 
+        const animDelay = (Math.random() * 5); 
+        const height = (Math.random() * 50 + 50); 
         
-        // Apply styles
         meteor.style.left = leftPos + 'vw';
         meteor.style.color = color;
         meteor.style.height = height + 'px';
@@ -607,7 +640,6 @@
       }
     }
     
-    // Initialize background when window loads
     window.onload = createMeteors;
   </script>
 </body>

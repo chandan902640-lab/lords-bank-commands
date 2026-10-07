@@ -7,22 +7,40 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Section offset fix taaki sticky header text ko na chupaye */
+    section {
+      scroll-margin-top: 90px;
+    }
+    /* Stylish Grid Background Pattern */
+    .bg-grid-pattern {
+      background-color: #0b0f19;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 36px 36px, 36px 36px;
+      background-attachment: fixed;
+    }
   </style>
 </head>
-<body class="bg-[#0f172a] text-slate-200 min-h-screen font-sans">
+<body class="bg-grid-pattern text-slate-200 min-h-screen font-sans">
 
   <!-- Header -->
-  <header class="border-b border-slate-800 bg-[#090d16]/95 sticky top-0 backdrop-blur z-50 shadow-md">
+  <header class="border-b border-slate-800/80 bg-[#090d16]/90 sticky top-0 backdrop-blur-md z-50 shadow-lg">
     <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center gap-3">
-        <i class="fa-solid fa-shield-halved text-amber-400 text-2xl"></i>
+        <div class="p-2 bg-amber-400/10 border border-amber-400/30 rounded-xl">
+          <i class="fa-solid fa-shield-halved text-amber-400 text-xl"></i>
+        </div>
         <h1 class="text-xl font-bold tracking-wide text-white">Guild Bank <span class="text-amber-400">Commands</span></h1>
       </div>
       <!-- Search Input -->
       <div class="relative w-full sm:w-80">
         <input type="text" id="searchInput" placeholder="Search commands, actions, syntax..." 
-          class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 pl-9 text-sm focus:outline-none focus:border-amber-400 text-white placeholder-slate-400 shadow-inner">
+          class="w-full bg-slate-900/90 border border-slate-700/80 rounded-lg px-3 py-2 pl-9 text-sm focus:outline-none focus:border-amber-400 text-white placeholder-slate-400 shadow-inner">
         <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
       </div>
     </div>
@@ -32,36 +50,36 @@
   <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
 
     <!-- Table of Contents / Quick Jump Buttons -->
-    <div class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-5 shadow-lg">
+    <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-xl backdrop-blur-sm">
       <h3 class="text-xs uppercase font-semibold text-slate-400 tracking-wider mb-3">Table of contents</h3>
-      <div class="flex flex-wrap gap-2">
-        <a href="#tips" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-400 hover:text-slate-900 border border-slate-700 text-sm font-medium transition duration-150">Tips</a>
-        <a href="#general" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-400 hover:text-slate-900 border border-slate-700 text-sm font-medium transition duration-150">General</a>
-        <a href="#search" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-400 hover:text-slate-900 border border-slate-700 text-sm font-medium transition duration-150">Search</a>
-        <a href="#balance" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-400 hover:text-slate-900 border border-slate-700 text-sm font-medium transition duration-150">Balance</a>
-        <a href="#resource" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-amber-400 hover:text-slate-900 border border-slate-700 text-sm font-medium transition duration-150">Resource</a>
+      <div class="flex flex-wrap gap-2.5">
+        <a href="#tips" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Tips</a>
+        <a href="#general" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">General</a>
+        <a href="#search" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Search</a>
+        <a href="#balance" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Balance</a>
+        <a href="#resource" class="px-4 py-2 rounded-lg bg-slate-800/90 hover:bg-amber-400 hover:text-slate-950 border border-slate-700 text-sm font-medium transition duration-200 shadow-sm">Resource</a>
       </div>
     </div>
 
     <!-- Tips Section -->
-    <section id="tips" class="scroll-mt-24 bg-slate-800/60 border border-amber-500/30 rounded-xl p-5 shadow-lg space-y-3">
+    <section id="tips" class="bg-slate-900/80 border border-amber-500/30 rounded-xl p-5 shadow-xl backdrop-blur-sm space-y-3">
       <h2 class="text-amber-400 font-semibold text-lg flex items-center gap-2">
         <i class="fa-solid fa-lightbulb"></i> Tips
       </h2>
       <ul class="text-slate-300 text-sm list-disc pl-5 space-y-2">
-        <li>If a player's name has a space you must either: Use an underscore within the command (Example: <code>Player 1</code> becomes <code>Player_1</code> &rarr; <code>!setacc Player_1</code>), OR use quotes around the name (Example: <code>"Player 1"</code> &rarr; <code>!setacc "Player 1"</code>)[cite: 16, 17].</li>
-        <li>By default Authorized users balances are non-deductible (Unlimited balance); an Authorized user is essentially an administrator of the bank[cite: 17]. They cannot use the Donate command[cite: 17].</li>
-        <li>By default R4+ have similar access to Authorized users[cite: 17]. Please ensure your command minimum ranks are appropriate[cite: 17].</li>
-        <li>The bank will not respond during long running tasks, such as hero stages[cite: 17]. We suggest in your hero stage to: Set a custom chapter and stage with 3 unlocked and enable Sweep and X10 options[cite: 17].</li>
+        <li>If a player's name has a space you must either: Use an underscore within the command (Example: <code>Player 1</code> becomes <code>Player_1</code> &rarr; <code>!setacc Player_1</code>), OR use quotes around the name (Example: <code>"Player 1"</code> &rarr; <code>!setacc "Player 1"</code>).</li>
+        <li>By default Authorized users balances are non-deductible (Unlimited balance); an Authorized user is essentially an administrator of the bank. They cannot use the Donate command.</li>
+        <li>By default R4+ have similar access to Authorized users. Please ensure your command minimum ranks are appropriate.</li>
+        <li>The bank will not respond during long running tasks, such as hero stages. We suggest in your hero stage to: Set a custom chapter and stage with 3 unlocked and enable Sweep and X10 options.</li>
       </ul>
     </section>
 
     <!-- General Commands -->
-    <section id="general" class="scroll-mt-24">
+    <section id="general">
       <h2 class="text-2xl font-bold text-white mb-4 pb-2 border-b border-slate-800 flex items-center gap-2">
         <i class="fa-solid fa-terminal text-amber-400"></i> General Commands
       </h2>
-      <div class="overflow-x-auto rounded-xl border border-slate-800 shadow-md">
+      <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/70 backdrop-blur-sm shadow-xl">
         <table class="w-full text-left text-sm command-table">
           <thead class="bg-slate-800/90 text-slate-300 font-semibold uppercase text-xs">
             <tr>
@@ -71,7 +89,7 @@
               <th class="p-3">Result</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+          <tbody class="divide-y divide-slate-800/80">
             <tr>
               <td class="p-3 font-mono text-amber-400 font-semibold">!payransom</td>
               <td class="p-3 text-slate-300">Pays any outstanding Ransom for the accounts leader</td>
@@ -336,12 +354,12 @@
     </section>
 
     <!-- Search Commands -->
-    <section id="search" class="scroll-mt-24">
+    <section id="search">
       <h2 class="text-2xl font-bold text-white mb-2 pb-2 border-b border-slate-800 flex items-center gap-2">
         <i class="fa-solid fa-location-crosshairs text-amber-400"></i> Search Commands
       </h2>
-      <p class="text-xs text-slate-400 mb-4">Note: Append <code>chat</code> at the end to post coordinates into guild chat (e.g. <code>!findtile food 4 chat</code>). Radius is ~70 tiles[cite: 23].</p>
-      <div class="overflow-x-auto rounded-xl border border-slate-800 shadow-md">
+      <p class="text-xs text-slate-400 mb-4">Note: Append <code>chat</code> at the end to post coordinates into guild chat (e.g. <code>!findtile food 4 chat</code>). Radius is ~70 tiles.</p>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/70 backdrop-blur-sm shadow-xl">
         <table class="w-full text-left text-sm command-table">
           <thead class="bg-slate-800/90 text-slate-300 font-semibold uppercase text-xs">
             <tr>
@@ -351,7 +369,7 @@
               <th class="p-3">Result</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+          <tbody class="divide-y divide-slate-800/80">
             <tr>
               <td class="p-3 font-mono text-amber-400 font-semibold">!findtile [type] [level]</td>
               <td class="p-3 text-slate-300">Finds resource tiles around castle bank</td>
@@ -406,11 +424,11 @@
     </section>
 
     <!-- Balance Commands -->
-    <section id="balance" class="scroll-mt-24">
+    <section id="balance">
       <h2 class="text-2xl font-bold text-white mb-4 pb-2 border-b border-slate-800 flex items-center gap-2">
         <i class="fa-solid fa-scale-balanced text-amber-400"></i> Balance Commands
       </h2>
-      <div class="overflow-x-auto rounded-xl border border-slate-800 shadow-md">
+      <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/70 backdrop-blur-sm shadow-xl">
         <table class="w-full text-left text-sm command-table">
           <thead class="bg-slate-800/90 text-slate-300 font-semibold uppercase text-xs">
             <tr>
@@ -420,7 +438,7 @@
               <th class="p-3">Result</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+          <tbody class="divide-y divide-slate-800/80">
             <tr>
               <td class="p-3 font-mono text-amber-400 font-semibold">!bal</td>
               <td class="p-3 text-slate-300">Checks your balance</td>
@@ -475,11 +493,11 @@
     </section>
 
     <!-- Resource Commands -->
-    <section id="resource" class="scroll-mt-24">
+    <section id="resource">
       <h2 class="text-2xl font-bold text-white mb-4 pb-2 border-b border-slate-800 flex items-center gap-2">
         <i class="fa-solid fa-cubes text-amber-400"></i> Resource Commands
       </h2>
-      <div class="overflow-x-auto rounded-xl border border-slate-800 shadow-md">
+      <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/70 backdrop-blur-sm shadow-xl">
         <table class="w-full text-left text-sm command-table">
           <thead class="bg-slate-800/90 text-slate-300 font-semibold uppercase text-xs">
             <tr>
@@ -489,7 +507,7 @@
               <th class="p-3">Result</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+          <tbody class="divide-y divide-slate-800/80">
             <tr>
               <td class="p-3 font-mono text-amber-400 font-semibold">![type] [amount]</td>
               <td class="p-3 text-slate-300">Sends one specific RSS (food, stone, ore, wood, gold)</td>
@@ -528,7 +546,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800 bg-[#090d16] py-10 mt-16 text-center text-xs text-slate-400 space-y-3">
+  <footer class="border-t border-slate-800/80 bg-[#090d16]/95 py-10 mt-16 text-center text-xs text-slate-400 space-y-3">
     <div class="space-x-4">
       <a href="#tips" class="hover:text-amber-400">Tips</a>
       <a href="#general" class="hover:text-amber-400">General</a>
